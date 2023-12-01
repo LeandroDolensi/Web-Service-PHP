@@ -1,0 +1,12 @@
+Options +FollowSymLinks
+RewriteEngine On
+
+##Comandos necessarios para aceitar JWT via Bearer
+RewriteCond %{HTTP:Authorization} ^Bearer\ (.+)
+RewriteRule .* - [e=HTTP_AUTHORIZATION:%1]
+RewriteRule ^ - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+##Comandos necessarios para o uso de links amigaveis
+RewriteRule .* index.php [L,QSA]
+
+
